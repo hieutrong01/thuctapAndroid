@@ -6,13 +6,13 @@ configurations.all {
     resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
 }
 android {
-    compileSdkVersion 33
+    compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.templatemela.Scanny"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -121,7 +121,7 @@ dependencies {
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
-    implementation 'com.infideap.drawerbehavior:drawer-behavior:1.0.4'
+    implementation 'com.infideap.drawerbehavior:drawer-behavior:1.0.5'
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
