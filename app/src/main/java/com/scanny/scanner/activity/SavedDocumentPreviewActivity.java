@@ -33,8 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.nativead.NativeAdView;
+
 import com.itextpdf.text.pdf.PdfObject;
 import com.scanny.scanner.R;
 import com.scanny.scanner.adapter.PreviewPagerAdapter;
@@ -105,7 +104,7 @@ public class SavedDocumentPreviewActivity extends BaseActivity implements View.O
         }
     };
     private RecyclerView rv_saved_tools;
-    private AdView adView;
+
 
     @Override
     public void onResume() {
@@ -147,9 +146,6 @@ public class SavedDocumentPreviewActivity extends BaseActivity implements View.O
     }
 
     private void init() {
-        adView = findViewById(R.id.adView);
-        AdsUtils.showGoogleBannerAd(this, adView);
-        AdsUtils.loadGoogleInterstitialAd(this, SavedDocumentPreviewActivity.this);
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_home = (ImageView) findViewById(R.id.iv_home);
@@ -261,11 +257,6 @@ public class SavedDocumentPreviewActivity extends BaseActivity implements View.O
                 dialog.getWindow().setLayout(-1, -2);
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.setCancelable(false);
-                if (AdmobAds.SHOW_ADS) {
-                    AdmobAds.loadNativeAds(SavedDocumentPreviewActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-                } else {
-                    dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-                }
                 ((TextView) dialog.findViewById(R.id.tv_delete)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -325,11 +316,6 @@ public class SavedDocumentPreviewActivity extends BaseActivity implements View.O
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(SavedDocumentPreviewActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
         final EditText editText = (EditText) dialog.findViewById(R.id.et_group_name);
         editText.setText(str);
         editText.setSelection(editText.length());
@@ -363,11 +349,6 @@ public class SavedDocumentPreviewActivity extends BaseActivity implements View.O
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
         ((RelativeLayout) dialog.findViewById(R.id.rl_share_pdf)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -416,11 +397,6 @@ public class SavedDocumentPreviewActivity extends BaseActivity implements View.O
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
         final EditText et_enter_pswrd = (EditText) dialog.findViewById(R.id.et_enter_pswrd);
         final ImageView iv_enter_pswrd_show = (ImageView) dialog.findViewById(R.id.iv_enter_pswrd_show);
         final ImageView iv_enter_pswrd_hide = (ImageView) dialog.findViewById(R.id.iv_enter_pswrd_hide);

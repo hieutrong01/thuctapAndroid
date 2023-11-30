@@ -11,7 +11,6 @@ import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
-import com.google.android.gms.ads.AdView;
 import com.scanny.scanner.R;
 import com.scanny.scanner.utils.AdsUtils;
 import com.shockwave.pdfium.PdfDocument;
@@ -26,7 +25,7 @@ public class PDFViewerActivity extends BaseActivity implements OnPageChangeListe
     protected TextView tv_title;
     private int page_no = 0;
     private PDFView pdfView;
-    private AdView adView;
+
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -36,8 +35,8 @@ public class PDFViewerActivity extends BaseActivity implements OnPageChangeListe
     }
 
     private void init() {
-        adView = findViewById(R.id.adView);
-        AdsUtils.showGoogleBannerAd(this, adView);
+
+
 
         tv_title = (TextView) findViewById(R.id.tv_title);
         tv_page = (TextView) findViewById(R.id.tv_page);

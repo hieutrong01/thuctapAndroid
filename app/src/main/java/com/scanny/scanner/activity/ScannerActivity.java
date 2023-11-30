@@ -271,9 +271,7 @@ public class ScannerActivity extends BaseActivity implements ActivityCompat.OnRe
         dbHelper = new DBHelper(this);
         init();
         bindView();
-
-        AdsUtils.loadGoogleInterstitialAd(this, ScannerActivity.this);
-    }
+      }
 
     private void init() {
         ly_camera = (LinearLayout) findViewById(R.id.ly_camera);

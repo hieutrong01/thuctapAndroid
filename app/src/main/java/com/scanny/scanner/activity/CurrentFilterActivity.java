@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.google.android.gms.ads.AdView;
 import com.scanlibrary.ScanActivity;
 import com.scanny.scanner.R;
 import com.scanny.scanner.db.DBHelper;
@@ -58,8 +57,6 @@ public class CurrentFilterActivity extends BaseActivity implements View.OnClickL
         }
     };
     private ProgressDialog progressDialog;
-    private AdView adView;
-
     @Override
     public void onResume() {
         super.onResume();
@@ -90,7 +87,7 @@ public class CurrentFilterActivity extends BaseActivity implements View.OnClickL
     }
 
     private void init() {
-        adView = findViewById(R.id.adView);
+
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_done = (ImageView) findViewById(R.id.iv_done);
         iv_preview_filter = (PhotoView) findViewById(R.id.iv_preview_filter);
@@ -103,8 +100,7 @@ public class CurrentFilterActivity extends BaseActivity implements View.OnClickL
             iv_preview_filter.setImageBitmap(original);
         }
 
-        AdsUtils.loadGoogleInterstitialAd(this, CurrentFilterActivity.this);
-        AdsUtils.showGoogleBannerAd(this, adView);
+
     }
 
     @Override

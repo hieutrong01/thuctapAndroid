@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdView;
+
 import com.scanlibrary.ScanActivity;
 import com.scanny.scanner.R;
 import com.scanny.scanner.db.DBHelper;
@@ -70,7 +70,7 @@ public class CropDocumentActivity extends BaseActivity implements View.OnClickLi
         }
     };
     private CropImageView iv_preview_crop;
-    private AdView adView;
+
     private TextView iv_ocv_black;
     private TextView iv_original;
     private TextView iv_color;
@@ -111,7 +111,7 @@ public class CropDocumentActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void init() {
-        adView = findViewById(R.id.adView);
+
         iv_add_new_scan = (ImageView) findViewById(R.id.iv_add_new_scan);
         seekBarBrightness = (SeekBar) findViewById(R.id.seekBarBrightness);
 
@@ -135,8 +135,7 @@ public class CropDocumentActivity extends BaseActivity implements View.OnClickLi
             original = Constant.original;
             changeBrightness(20);
         }
-        AdsUtils.loadGoogleInterstitialAd(this, CropDocumentActivity.this);
-        AdsUtils.showGoogleBannerAd(this, adView);
+
 
 
         seekBarBrightness.setOnSeekBarChangeListener(this);

@@ -31,7 +31,7 @@ public class AdsUtils {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        adView.loadAd(new AdRequest.Builder().build());
+       // adView.loadAd(new AdRequest.Builder().build());
     }
 
     public static void loadGoogleInterstitialAd(Context context, Activity activity) {
@@ -93,7 +93,7 @@ public class AdsUtils {
             } else {
                 jumpNextActivity(activity);
             }
-            loadGoogleInterstitialAd(activity, activity);
+          //  loadGoogleInterstitialAd(activity, activity);
         } else {
             jumpNextActivity(activity);
         }

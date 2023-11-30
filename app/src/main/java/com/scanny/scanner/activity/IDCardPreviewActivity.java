@@ -136,7 +136,6 @@ public class IDCardPreviewActivity extends BaseActivity implements View.OnClickL
         LocalDisplay.init(this);
         setContentView(R.layout.activity_idcard_preview);
         dbHelper = new DBHelper(this);
-        AdsUtils.loadGoogleInterstitialAd(this, IDCardPreviewActivity.this);
         init();
         bindView();
     }

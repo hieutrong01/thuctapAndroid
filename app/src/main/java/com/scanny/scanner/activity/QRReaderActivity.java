@@ -88,11 +88,7 @@ public class QRReaderActivity extends BaseActivity implements ZXingScannerView.R
         dialog.getWindow().setLayout(-1, -2);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(QRReaderActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
+
 
         TextView tv_search = dialog.findViewById(R.id.tv_search);
         TextView tv_result = dialog.findViewById(R.id.tv_result);

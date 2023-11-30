@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -35,7 +34,7 @@ public class ImageToTextActivity extends BaseActivity implements View.OnClickLis
     protected ImageView iv_share_txt;
     private ImageView iv_preview_img;
     private TextView tv_title;
-    private AdView adView;
+
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -55,8 +54,8 @@ public class ImageToTextActivity extends BaseActivity implements View.OnClickLis
         iv_copy_txt = (ImageView) findViewById(R.id.iv_copy_txt);
         tv_ocr_txt = (TextView) findViewById(R.id.tv_ocr_txt);
 
-        adView = findViewById(R.id.adView);
-        AdsUtils.showGoogleBannerAd(this, adView);
+
+
     }
 
     private void bindView() {

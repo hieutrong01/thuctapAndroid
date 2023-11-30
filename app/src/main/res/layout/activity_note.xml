@@ -45,7 +45,7 @@
                 android:layout_marginEnd="@dimen/_6sdp"
                 android:padding="@dimen/_6sdp"
                 android:src="@drawable/ic_save_note"
-                android:tint="@color/black" />
+                app:tint="@color/black" />
         </RelativeLayout>
 
         <LinearLayout
@@ -753,17 +753,5 @@
         </HorizontalScrollView>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom">
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:adSize="BANNER"
-            app:adUnitId="@string/admob_banner_id" />
-    </RelativeLayout>
 </LinearLayout>

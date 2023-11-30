@@ -7,7 +7,7 @@ import android.widget.Toast;
 import androidx.core.internal.view.SupportMenu;
 import androidx.core.view.ViewCompat;
 
-import com.google.android.gms.ads.AdView;
+
 import com.scanny.scanner.R;
 import com.scanny.scanner.db.DBHelper;
 import com.scanny.scanner.utils.AdsUtils;
@@ -24,7 +24,7 @@ public class NoteActivity extends BaseActivity {
 
     public RichEditor richEditor;
     protected String text;
-    private AdView adView;
+
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -37,7 +37,7 @@ public class NoteActivity extends BaseActivity {
     }
 
     private void init() {
-        adView = findViewById(R.id.adView);
+
         richEditor = (RichEditor) findViewById(R.id.editor);
         group_name = getIntent().getStringExtra("group_name");
         current_doc_name = getIntent().getStringExtra("current_doc_name");
@@ -47,7 +47,6 @@ public class NoteActivity extends BaseActivity {
         richEditor.setHtml(text);
         richEditor.requestFocus();
 
-        AdsUtils.showGoogleBannerAd(this, adView);
     }
 
     private void bindView() {

@@ -264,8 +264,6 @@ public class DocumentEditorActivity extends BaseActivity implements View.OnClick
         dbHelper = new DBHelper(this);
         init();
         bindView();
-
-        AdsUtils.loadGoogleInterstitialAd(this, DocumentEditorActivity.this);
     }
 
     private void init() {
@@ -1024,11 +1022,7 @@ public class DocumentEditorActivity extends BaseActivity implements View.OnClick
         dialog.getWindow().setLayout(-1, -2);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(DocumentEditorActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
+
         final EditText editText = (EditText) dialog.findViewById(R.id.et_input_txt);
         TextView textView = (TextView) dialog.findViewById(R.id.tv_cancel);
         TextView textView2 = (TextView) dialog.findViewById(R.id.tv_done);

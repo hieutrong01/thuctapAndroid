@@ -15,8 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.nativead.NativeAdView;
+
 import com.scanny.scanner.R;
 import com.scanny.scanner.db.DBHelper;
 import com.scanny.scanner.main_utils.Constant;
@@ -54,7 +53,7 @@ public class SavedDocumentActivity extends BaseActivity implements View.OnClickL
     };
     private ImageView iv_preview_saved;
     private LinearLayout llRetake, llEdit, llRotate, llDelete;
-    private AdView adView;
+
 
     @Override
     public void onResume() {
@@ -87,9 +86,7 @@ public class SavedDocumentActivity extends BaseActivity implements View.OnClickL
     }
 
     private void init() {
-        adView = findViewById(R.id.adView);
-        AdsUtils.showGoogleBannerAd(this, adView);
-        AdsUtils.loadGoogleInterstitialAd(this, SavedDocumentActivity.this);
+
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_preview_saved = (ImageView) findViewById(R.id.iv_preview_saved);
@@ -124,11 +121,7 @@ public class SavedDocumentActivity extends BaseActivity implements View.OnClickL
                 dialog.getWindow().setLayout(-1, -2);
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.setCancelable(false);
-                if (AdmobAds.SHOW_ADS) {
-                    AdmobAds.loadNativeAds(SavedDocumentActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-                } else {
-                    dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-                }
+
                 ((TextView) dialog.findViewById(R.id.tv_delete)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

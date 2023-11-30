@@ -31,7 +31,7 @@
                     android:onClick="onClick"
                     android:padding="@dimen/_7sdp"
                     android:src="@drawable/ic_back"
-                    android:tint="@color/black" />
+                    app:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                     android:onClick="onClick"
                     android:padding="@dimen/_6sdp"
                     android:src="@drawable/ic_check_mark"
-                    android:tint="@color/black" />
+                    app:tint="@color/black" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -1493,7 +1493,7 @@
                 android:onClick="onClick"
                 android:padding="@dimen/_6sdp"
                 android:src="@drawable/ic_check_mark"
-                android:tint="@color/white" />
+                app:tint="@color/white" />
 
 
         </RelativeLayout>

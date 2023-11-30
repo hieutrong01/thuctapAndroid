@@ -34,7 +34,7 @@ public class AdmobAds {
                 .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                     @Override
                     public void onNativeAdLoaded(NativeAd nativeAd) {
-                        AdmobAds.populateNativeAdView(nativeAd, nativeAdView);
+                      //  AdmobAds.populateNativeAdView(nativeAd, nativeAdView);
                         viewGroup.setVisibility(View.VISIBLE);
                         ((View) viewGroup.getParent().getParent()).setVisibility(View.VISIBLE);
                         if (view != null) {

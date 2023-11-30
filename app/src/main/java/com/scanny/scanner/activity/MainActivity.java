@@ -78,9 +78,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
@@ -236,7 +238,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         init();
         bindView();
-        AdsUtils.loadGoogleInterstitialAd(mainActivity, MainActivity.this);
+
 
     }
 
@@ -394,7 +396,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         EditText et_folder_name = (EditText) dialog.findViewById(R.id.et_folder_name);
-        String folder_name = "Scanny" + Constant.getDateTime("_ddMMHHmmss");
+        String folder_name = "Scan to PDF" + Constant.getDateTime("ddMMHHmmss");
         et_folder_name.setText(folder_name);
 
         ((TextView) dialog.findViewById(R.id.tv_create)).setOnClickListener(new View.OnClickListener() {
@@ -402,7 +404,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             public void onClick(View view) {
                 String finalFolderName = et_folder_name.getText().toString().trim();
                 if (!finalFolderName.isEmpty()) {
-                    String group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
+                    String group_date = Constant.getDateTime("yyyyMMdd  hh:mm a");
                     if (groupName.isEmpty()) {        // for create new folder
                         dbHelper.createDocTable(finalFolderName);
                         dbHelper.addGroup(new DBModel(finalFolderName, group_date, "", Constant.current_tag));
@@ -461,7 +463,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     }
                 } else if (checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == PackageManager.PERMISSION_GRANTED && checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == PackageManager.PERMISSION_GRANTED && checkSelfPermission("android.permission.CAMERA") == PackageManager.PERMISSION_GRANTED) {
                     Constant.IdentifyActivity = "QRReaderActivity";
-                    AdsUtils.showGoogleInterstitialAd(MainActivity.this, true);
+                   AdsUtils.showGoogleInterstitialAd(MainActivity.this, true);
                 } else {
                     ActivityCompat.requestPermissions(this, new String[]{"android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.CAMERA"}, 3);
                 }
@@ -635,11 +637,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
                 dialog.setCancelable(false);
                 dialog.setCanceledOnTouchOutside(false);
-                if (AdmobAds.SHOW_ADS) {
-                    AdmobAds.loadNativeAds(MainActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-                } else {
-                    dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-                }
+
                 ((RelativeLayout) dialog.findViewById(R.id.rl_save_pdf)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -703,11 +701,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 dialog.getWindow().setLayout(-1, -2);
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.setCancelable(false);
-                if (AdmobAds.SHOW_ADS) {
-                    AdmobAds.loadNativeAds(MainActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-                } else {
-                    dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-                }
+
                 ((TextView) dialog.findViewById(R.id.tv_delete)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -827,11 +821,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(MainActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
+
         final TextView textView = (TextView) dialog.findViewById(R.id.tv_title);
         final EditText et_pdf_name = (EditText) dialog.findViewById(R.id.et_pdf_name);
         textView.setText(title);
@@ -867,11 +857,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(MainActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
+
         ((RelativeLayout) dialog.findViewById(R.id.rl_share_pdf)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -922,11 +908,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(MainActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
+
 
         final EditText et_enter_pswrd = (EditText) dialog.findViewById(R.id.et_enter_pswrd);
         final EditText et_confirm_pswrd = (EditText) dialog.findViewById(R.id.et_confirm_pswrd);
@@ -1012,11 +994,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(MainActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
+
         final EditText editText = (EditText) dialog.findViewById(R.id.et_group_name);
         editText.setText(name);
         editText.setSelection(editText.length());
@@ -1048,11 +1026,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        if (AdmobAds.SHOW_ADS) {
-            AdmobAds.loadNativeAds(MainActivity.this, (View) null, (ViewGroup) dialog.findViewById(R.id.admob_native_container), (NativeAdView) dialog.findViewById(R.id.native_ad_view));
-        } else {
-            dialog.findViewById(R.id.admob_native_container).setVisibility(View.GONE);
-        }
+
         final EditText editText = (EditText) dialog.findViewById(R.id.et_emailId);
 
         ((TextView) dialog.findViewById(R.id.tv_done)).setOnClickListener(new View.OnClickListener() {
