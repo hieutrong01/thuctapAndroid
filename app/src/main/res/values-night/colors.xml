@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<!--    #25c4a4-->
     <color name="colorAccent">#25c4a4</color>
-    <color name="colorPrimary">#25c4a4</color>
+    <color name="colorPrimary">#34404B</color>
     <color name="colorPrimaryDark">#25c4a4</color>
 
     <color name="bg_color">#39393A</color>
@@ -33,5 +33,17 @@
     <color name="text_color_white">@color/white</color>
     <!--    <color name="ucrop_color_black">#FFF</color>-->
     <!--    <color name="ucrop_color_white">#000</color>-->
+    <color name="neural_900">#34404B</color>
+    <color name="neural_800">#5D666F</color>
+    <color name="neural_700">#717981</color>
+    <color name="neural_600">#858C93</color>
+    <color name="neural_500">#9AA0A5</color>
+    <color name="neural_400">#C2C6C9</color>
+    <color name="neural_300">#D6D9DB</color>
+    <color name="neural_200">#EBECED</color>
+    <color name="neural_100">#FFFFFF</color>
+    <color name="neural_100_30">#4DFFFFFF</color>
+    <color name="neural_200_30">#F5F6F8</color>
+    <color name="neural_FFF5EE">#FFF5EE</color>
 
 </resources>

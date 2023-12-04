@@ -49,6 +49,18 @@
 
     <color name="subscribe_dialog_one_text">#a0a0a0</color>
     <color name="dialog_bg_color">#FFFFFF</color>
+    <color name="neural_900">#34404B</color>
+    <color name="neural_800">#5D666F</color>
+    <color name="neural_700">#717981</color>
+    <color name="neural_600">#858C93</color>
+    <color name="neural_500">#9AA0A5</color>
+    <color name="neural_400">#C2C6C9</color>
+    <color name="neural_300">#D6D9DB</color>
+    <color name="neural_200">#EBECED</color>
+    <color name="neural_100">#FFFFFF</color>
+    <color name="neural_100_30">#4DFFFFFF</color>
+    <color name="neural_200_30">#F5F6F8</color>
+    <color name="neural_FFF5EE">#FFF5EE</color>
 
     <color name="ucrop_color_toolbar">@color/colorPrimary</color>
     <color name="ucrop_color_statusbar">@color/colorPrimary</color>
