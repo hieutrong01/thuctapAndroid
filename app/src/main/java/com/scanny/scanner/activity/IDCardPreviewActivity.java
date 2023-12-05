@@ -43,6 +43,7 @@ import com.scanny.scanner.scrapbook.StickerConfigInterface;
 import com.scanny.scanner.scrapbook.StickerHolderView;
 import com.scanny.scanner.scrapbook.TextStickerConfig;
 import com.scanny.scanner.utils.AdsUtils;
+import com.scanny.scanner.utils.EnterCodeBottomSheetFragment;
 import com.takwolf.android.aspectratio.AspectRatioLayout;
 
 import java.io.File;
@@ -358,8 +359,14 @@ public class IDCardPreviewActivity extends BaseActivity implements View.OnClickL
                 group_name = "Scanny" + Constant.getDateTime("_ddMMHHmmss");
                 group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
                 current_doc_name = "Doc_" + System.currentTimeMillis();
-                dbHelper.createDocTable(group_name);
-                dbHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag));
+                EnterCodeBottomSheetFragment bottomSheetFragment = new EnterCodeBottomSheetFragment();
+                bottomSheetFragment.setEnterCodeListener(new EnterCodeBottomSheetFragment.EnterCodeListener() {
+                    @Override
+                    public void onCodeEntered(String code) {
+                        dbHelper.createDocTable(group_name);
+                        dbHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag),code);
+                    }
+                });
                 dbHelper.addGroupDoc(group_name, file.getPath(), current_doc_name, "Insert text here...");
                 return null;
             }

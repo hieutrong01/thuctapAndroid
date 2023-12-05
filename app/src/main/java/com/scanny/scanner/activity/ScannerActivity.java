@@ -57,6 +57,7 @@ import com.scanny.scanner.main_utils.Constant;
 import com.scanny.scanner.models.BookModel;
 import com.scanny.scanner.models.DBModel;
 import com.scanny.scanner.utils.AdsUtils;
+import com.scanny.scanner.utils.EnterCodeBottomSheetFragment;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.util.FileUtils;
 
@@ -1146,8 +1147,14 @@ public class ScannerActivity extends BaseActivity implements ActivityCompat.OnRe
                 group_name = "Scanny" + Constant.getDateTime("_ddMMHHmmss");
                 group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
                 current_doc_name = "Doc_" + System.currentTimeMillis();
-                dbHelper.createDocTable(group_name);
-                dbHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag));
+                EnterCodeBottomSheetFragment bottomSheetFragment = new EnterCodeBottomSheetFragment();
+                bottomSheetFragment.setEnterCodeListener(new EnterCodeBottomSheetFragment.EnterCodeListener() {
+                    @Override
+                    public void onCodeEntered(String code) {
+                        dbHelper.createDocTable(group_name);
+                        dbHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag),code);
+                    }
+                });
                 dbHelper.addGroupDoc(group_name, file.getPath(), current_doc_name, "Insert text here...");
                 return null;
             }
@@ -1210,8 +1217,14 @@ public class ScannerActivity extends BaseActivity implements ActivityCompat.OnRe
                         selected_group_name = group_name;
                         group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
                         current_doc_name = "Doc_" + System.currentTimeMillis();
-                        dbHelper.createDocTable(group_name);
-                        dbHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag));
+                        EnterCodeBottomSheetFragment bottomSheetFragment = new EnterCodeBottomSheetFragment();
+                        bottomSheetFragment.setEnterCodeListener(new EnterCodeBottomSheetFragment.EnterCodeListener() {
+                            @Override
+                            public void onCodeEntered(String code) {
+                                dbHelper.createDocTable(group_name);
+                                dbHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag),code);
+                            }
+                        });
                         dbHelper.addGroupDoc(group_name, file.getPath(), current_doc_name, "Insert text here...");
                         bookImgList.add(new BookModel(bitmapList.get(i), current_doc_name, i));
                     } else {

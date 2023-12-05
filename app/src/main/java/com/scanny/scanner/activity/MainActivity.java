@@ -72,6 +72,7 @@ import com.scanny.scanner.models.DBModel;
 import com.scanny.scanner.models.DrawerModel;
 import com.scanny.scanner.utils.AdmobAds;
 import com.scanny.scanner.utils.AdsUtils;
+import com.scanny.scanner.utils.EnterCodeBottomSheetFragment;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -406,11 +407,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 if (!finalFolderName.isEmpty()) {
                     String group_date = Constant.getDateTime("yyyyMMdd  hh:mm a");
                     if (groupName.isEmpty()) {        // for create new folder
-                        dbHelper.createDocTable(finalFolderName);
-                        dbHelper.addGroup(new DBModel(finalFolderName, group_date, "", Constant.current_tag));
+                        EnterCodeBottomSheetFragment bottomSheetFragment = new EnterCodeBottomSheetFragment();
+                        bottomSheetFragment.setEnterCodeListener(new EnterCodeBottomSheetFragment.EnterCodeListener() {
+                            @Override
+                            public void onCodeEntered(String code) {
+                                dbHelper.createDocTable(finalFolderName);
+                                dbHelper.addGroup(new DBModel(finalFolderName, group_date, "", Constant.current_tag),code);
+                            }
+                        });
+
                     } else {
-                        dbHelper.createDocTable(finalFolderName);
-                        dbHelper.addGroup(new DBModel(finalFolderName, group_date, "", Constant.current_tag));
+
+                        EnterCodeBottomSheetFragment bottomSheetFragment = new EnterCodeBottomSheetFragment();
+                        bottomSheetFragment.setEnterCodeListener(new EnterCodeBottomSheetFragment.EnterCodeListener() {
+                            @Override
+                            public void onCodeEntered(String code) {
+                                dbHelper.createDocTable(finalFolderName);
+                                dbHelper.addGroup(new DBModel(finalFolderName, group_date, "", Constant.current_tag),code);
+                            }
+                        });
                         // for move new folder
                         boolean isSuccess = false;
                         ArrayList<DBModel> allFileList = dbHelper.getGroupDocs(groupName);

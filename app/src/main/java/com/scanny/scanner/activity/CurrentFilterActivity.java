@@ -21,6 +21,7 @@ import com.scanny.scanner.main_utils.BitmapUtils;
 import com.scanny.scanner.main_utils.Constant;
 import com.scanny.scanner.models.DBModel;
 import com.scanny.scanner.utils.AdsUtils;
+import com.scanny.scanner.utils.EnterCodeBottomSheetFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -327,8 +328,14 @@ public class CurrentFilterActivity extends BaseActivity implements View.OnClickL
                 group_name = "Scanny" + Constant.getDateTime("_ddMMHHmmss");
                 group_date = Constant.getDateTime("yyyy-MM-dd  hh:mm a");
                 current_doc_name = "Doc_" + System.currentTimeMillis();
-                dataBaseHelper.createDocTable(group_name);
-                dataBaseHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag));
+                EnterCodeBottomSheetFragment bottomSheetFragment = new EnterCodeBottomSheetFragment();
+                bottomSheetFragment.setEnterCodeListener(new EnterCodeBottomSheetFragment.EnterCodeListener() {
+                    @Override
+                    public void onCodeEntered(String code) {
+                        dataBaseHelper.createDocTable(group_name);
+                        dataBaseHelper.addGroup(new DBModel(group_name, group_date, file.getPath(), Constant.current_tag),code);
+                    }
+                });
                 dataBaseHelper.addGroupDoc(group_name, file.getPath(), current_doc_name, "Insert text here...");
                 return null;
             }

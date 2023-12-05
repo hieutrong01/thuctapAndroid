@@ -125,15 +125,19 @@ public class DBHelper extends SQLiteOpenHelper {
         writableDatabase.execSQL("CREATE TABLE '" + str + "'(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_IMG_NAME + " TEXT," + KEY_IMG_NOTE + " TEXT," + KEY_IMG_PATH + " TEXT)");
     }
 
-    public void addGroup(DBModel dBModel) {
+    public void addGroup(DBModel dBModel,String code) {
         // Kiểm tra và khởi tạo khóa mới nếu cần
         if (isKeyExpired()) {
             refreshKey();
 
         }
+        // Mã hóa dữ liệu với mã nhập từ người dùng
+        String encryptedCode = encrypt(code);
+
+        // Tiếp tục xử lý dữ liệu, ví dụ: lưu vào cơ sở dữ liệu
         SQLiteDatabase writableDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", dBModel.getGroup_name());
+        contentValues.put("name", encryptedCode);
         contentValues.put("date", dBModel.getGroup_date());
         contentValues.put(KEY_TAG, dBModel.getGroup_tag());
         contentValues.put(KEY_FIRST_IMAGE, dBModel.getGroup_first_img());
