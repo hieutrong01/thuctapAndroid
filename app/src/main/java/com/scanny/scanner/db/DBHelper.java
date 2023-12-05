@@ -129,6 +129,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // Kiểm tra và khởi tạo khóa mới nếu cần
         if (isKeyExpired()) {
             refreshKey();
+
         }
         SQLiteDatabase writableDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
