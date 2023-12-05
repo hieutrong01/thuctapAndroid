@@ -6,12 +6,28 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import android.os.Build;
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyProperties;
+import android.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.scanny.scanner.models.DBModel;
 
 import java.util.ArrayList;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.spec.IvParameterSpec;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "DocumentDB";
@@ -26,10 +42,72 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_TAG = "tag";
     private static final String TABLE_NAME = "alldocs";
     private static final String TAG = "DBHelper";
+    private static final String KEY_NAME = "key_name";
+    private SecretKey secretKey;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, (SQLiteDatabase.CursorFactory) null, 1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            initializeKey();
+        }
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void initializeKey() {
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+            KeyGenParameterSpec keyGenParameterSpec = new KeyGenParameterSpec.Builder(
+                    KEY_NAME,
+                    KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                    .setRandomizedEncryptionRequired(false)  // Tùy chọn, tùy thuộc vào yêu cầu của bạn
+                    .setKeySize(256)  // Tùy chọn, tùy thuộc vào yêu cầu của bạn
+                    .build();
+
+            keyGenerator.init(keyGenParameterSpec);
+            secretKey = keyGenerator.generateKey();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void refreshKey() {
+        // Tạo khóa mới
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            initializeKey();
+        }
+    }
+    private boolean isKeyExpired() {
+        // Kiểm tra xem khóa đã hết hạn hay chưa (tùy thuộc vào logic của bạn)
+        // Trong trường hợp này, giả sử mỗi lần addGroup là 10 lần, sau đó khóa được đánh dấu là đã hết hạn.
+        // Bạn cần xác định tiêu chí khi mà khóa cần được đổi mới.
+        // Dưới đây là một ví dụ đơn giản:
+        // return numberOfGroups % 10 == 0;
+        return false;
+    }
+    private String encrypt(String data) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            byte[] encryptedData = cipher.doFinal(data.getBytes("UTF-8"));
+            return Base64.encodeToString(encryptedData, Base64.DEFAULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String decrypt(String data) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(new byte[cipher.getBlockSize()]));
+            byte[] decryptedData = cipher.doFinal(Base64.decode(data, Base64.DEFAULT));
+            return new String(decryptedData, "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase sQLiteDatabase) {
@@ -48,6 +126,10 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void addGroup(DBModel dBModel) {
+        // Kiểm tra và khởi tạo khóa mới nếu cần
+        if (isKeyExpired()) {
+            refreshKey();
+        }
         SQLiteDatabase writableDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", dBModel.getGroup_name());
