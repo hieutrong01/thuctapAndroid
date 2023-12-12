@@ -356,7 +356,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 hideSoftKeyboard(et_search);
                 return;
             case R.id.iv_drawer:
-               // drawer_ly.openDrawer(GravityCompat.START);
+                drawer_ly.openDrawer(GravityCompat.START);
                 return;
             case R.id.iv_group_camera:
                 ActivityCompat.requestPermissions(this, new String[]{"android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.CAMERA"}, 2);

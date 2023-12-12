@@ -17,7 +17,7 @@ public class SplashActivity extends BaseActivity {
                // nextActivit();
 //                startActivity(new Intent(SplashActivity.this, UIV2MainActivity.class));
 //                finish();
-                startActivity(new Intent(SplashActivity.this, UIV2MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }
         }, 1500);
