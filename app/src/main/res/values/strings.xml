@@ -168,5 +168,12 @@
     <string name="license_key"></string>
     <string name="purchase_text">Your purchase was successful!</string>
     <string name="darkTheme">Dark Theme</string>
+    <string name="signup">Nếu bạn chưa có tài khoản? <font color="#005bf6">Đăng ký</font></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bottom_home">Trang chủ</string>
+    <string name="bottom_tep_tin">Tệp tin</string>
+    <string name="bottom_qr_scan">QR code</string>
+    <string name="bottom_person">Cá nhân</string>
 
 </resources>

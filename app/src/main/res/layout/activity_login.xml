@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@color/bg_color1"
+    tools:context=".activity.LoginActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/neural_900"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email:"
+        android:imeOptions="actionNext"
+        android:maxLength="50"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/neural_900"/>
+    <EditText
+        android:id="@+id/edt_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password:"
+        android:layout_marginTop="16dp"
+        android:inputType="textPassword"
+        android:imeOptions="actionDone"
+        android:maxLength="50"
+        android:textColor="@color/neural_900"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sigin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="12dp"
+        android:layout_marginTop="20dp"
+        android:text="LogIn"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_blue_500_boder_48dp"/>
+<androidx.appcompat.widget.AppCompatTextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:gravity="center"
+    android:layout_marginTop="20dp"
+    android:text="@string/signup"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

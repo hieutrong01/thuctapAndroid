@@ -356,7 +356,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 hideSoftKeyboard(et_search);
                 return;
             case R.id.iv_drawer:
-                drawer_ly.openDrawer(GravityCompat.START);
+               // drawer_ly.openDrawer(GravityCompat.START);
                 return;
             case R.id.iv_group_camera:
                 ActivityCompat.requestPermissions(this, new String[]{"android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.CAMERA"}, 2);
@@ -396,7 +396,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         EditText et_folder_name = (EditText) dialog.findViewById(R.id.et_folder_name);
-        String folder_name = "Scan to PDF" + Constant.getDateTime("ddMMHHmmss");
+        String folder_name = "ScanToPDF" + Constant.getDateTime("ddMMHHmmss");
         et_folder_name.setText(folder_name);
 
         ((TextView) dialog.findViewById(R.id.tv_create)).setOnClickListener(new View.OnClickListener() {

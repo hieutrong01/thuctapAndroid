@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/bottom_home"
+        android:title="@string/bottom_home"
+        android:icon="@drawable/uiv2_icon_home"/>
+    <item android:id="@+id/bottom_file"
+        android:title="@string/bottom_tep_tin"
+        android:icon="@drawable/uiv2_insert_drive_file"/>
+    <item android:id="@+id/bottom_qrCode"
+        android:title="@string/bottom_qr_scan"
+        android:icon="@drawable/uiv2_document_scanner"/>
+    <item android:id="@+id/bottom_person"
+        android:title="@string/bottom_person"
+        android:icon="@drawable/uiv2_person_2"/>
+</menu>
