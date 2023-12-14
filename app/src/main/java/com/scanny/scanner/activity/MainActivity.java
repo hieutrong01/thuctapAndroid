@@ -445,7 +445,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         });
         dialog.show();
     }
-
     @Override
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
